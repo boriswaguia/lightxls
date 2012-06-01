@@ -58,8 +58,6 @@ public class EasyXlsClazzLoader<T> implements EasyClazzLoader<T> {
 
 		Field[] declaredFields = clazz.getDeclaredFields();
 		int numberOfSheets = workbook.getNumberOfSheets();
-		System.out.println(" Number Of fields" + declaredFields.length
-				+ " \t numberOfSheets " + numberOfSheets);
 		Method[] declaredMethods = clazz.getDeclaredMethods();
 		if (classInSheetFinder == null)
 			classInSheetFinder = new ClassInSheetFinder();
@@ -125,7 +123,6 @@ public class EasyXlsClazzLoader<T> implements EasyClazzLoader<T> {
 			result.add((T) newInstance);
 			numberOfIteration ++;
 		}
-		System.out.println("NUMBER OF ITERATIONS  : \t"+numberOfIteration);
 		return result;
 	}
 

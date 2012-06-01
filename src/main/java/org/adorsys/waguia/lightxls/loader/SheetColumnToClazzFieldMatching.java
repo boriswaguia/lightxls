@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.adorsys.waguia.lightxls.core.EasyMatching;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class SheetColumnToClazzFieldMatching implements EasyMatching {
@@ -47,10 +46,8 @@ public class SheetColumnToClazzFieldMatching implements EasyMatching {
 				}
 			}
 		}
-		System.out.println("Array contains "+tempArray[3]);
 		fieldNames = tempArray ;
 		if(clazzMethods.length < fieldNames.length) result = false;
-		System.out.println("result : \t"+result);
 		//TODO : Find spring's bean validator For getters/setters
 		//Here I check if There are appropriate setter for founded fields.
 		for (int i = 0; i < fieldNames.length; i++) {
@@ -65,7 +62,6 @@ public class SheetColumnToClazzFieldMatching implements EasyMatching {
 					break ;
 				}
 			}
-			System.out.println("Method Found \t "+methodFound);
 			if(methodFound == false) result = false ;
 		}
 		return result;
