@@ -35,3 +35,12 @@ GREAT ! How will the tools know about my Implementation ?
     Just Getters/Setters methods provided, to change the default values !
 
 Want to invest ? Thanks !
+
+RESUME !
+
+1- WHERE ARE NOW ?
+   Actually, We simply load xls column in POJO. Data are loaded As String. There is no type checking.
+2- WHERE ARE WE GOING ?
+   The main goal of easyxls is to load data from source (xls, database, json, aso) in POJO, By using 
+   Reflection, as presented in the Test up there.
+     
