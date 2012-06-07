@@ -23,7 +23,7 @@ public class Person {
 	private String personKeyBk;
 	private String firstName;
 	private String address ;
-	
+	private int age ;
 	private String ckeck ;
 	public String getPersonKeyBk() {
 		return personKeyBk;
@@ -49,10 +49,19 @@ public class Person {
 	public void setCkeck(String ckeck) {
 		this.ckeck = ckeck;
 	}
+	
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 	@Override
 	public String toString() {
 		return "Person [personKeyBk=" + personKeyBk + ", firstName="
-				+ firstName + ", address=" + address + ", ckeck=" + ckeck + "]";
+				+ firstName + ", address=" + address + ", age=" + age
+				+ ", ckeck=" + ckeck + "]";
 	}
 	
 	

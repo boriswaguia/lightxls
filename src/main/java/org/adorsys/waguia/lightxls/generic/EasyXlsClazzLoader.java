@@ -29,6 +29,7 @@ import org.adorsys.waguia.lightxls.core.EasyComparator;
 import org.adorsys.waguia.lightxls.core.EasyMatching;
 import org.adorsys.waguia.lightxls.core.Finder;
 import org.adorsys.waguia.lightxls.loader.ClassInSheetFinder;
+import org.adorsys.waguia.lightxls.loader.ExelPropertyReader;
 import org.adorsys.waguia.lightxls.loader.FieldToColumnComparator;
 import org.adorsys.waguia.lightxls.loader.SheetColumnToClazzFieldMatching;
 import org.apache.commons.lang3.StringUtils;
@@ -49,7 +50,7 @@ public class EasyXlsClazzLoader<T> implements EasyClazzLoader<T> {
 	private Finder classInSheetFinder;
 	private EasyMatching sheetColumnToClazzFieldMatching;
 	private EasyComparator fieldToColumnComparator;
-
+	private ExelPropertyReader exelPropertyReader ;
 	public EasyXlsClazzLoader(Workbook workbook, Class<T> clazz) {
 		this.workbook = workbook;
 		this.clazz = clazz;
@@ -131,8 +132,18 @@ public class EasyXlsClazzLoader<T> implements EasyClazzLoader<T> {
 					//Find the correct field's range in the list of columns.
 					for (String string : columnNames) {
 						if (fieldToColumnComparator.compare(field.getName(),string) == 0) {
-//							if(field.getType().getClass().equals(Integer.class))
-							method.invoke(newInstance, nextRow.getCell(index).getStringCellValue());
+							Class<?> type = field.getType();
+							if(exelPropertyReader == null){
+								exelPropertyReader = new ExelPropertyReader(field, type, newInstance, nextRow.getCell(index), method);
+								exelPropertyReader.readProperty();
+							}else {
+								exelPropertyReader.setField(field);
+								exelPropertyReader.setCell(nextRow.getCell(index));
+								exelPropertyReader.setMethod(method);
+								exelPropertyReader.setNewInstance(newInstance);
+								exelPropertyReader.setType(type);
+								exelPropertyReader.readProperty();
+							}
 							index++;
 							continue ;
 						}
@@ -145,7 +156,8 @@ public class EasyXlsClazzLoader<T> implements EasyClazzLoader<T> {
 		}
 		return result;
 	}
-
+	public void checkTypeAndLoadData(Class<?> type,Object newInstance,Cell cell){
+	}
 	public Finder getClassInSheetFinder() {
 		return classInSheetFinder;
 	}
@@ -172,4 +184,12 @@ public class EasyXlsClazzLoader<T> implements EasyClazzLoader<T> {
 		this.fieldToColumnComparator = fieldToColumnComparator;
 	}
 
+	public ExelPropertyReader getExelPropertyReader() {
+		return exelPropertyReader;
+	}
+
+	public void setExelPropertyReader(ExelPropertyReader exelPropertyReader) {
+		this.exelPropertyReader = exelPropertyReader;
+	}
+	
 }
