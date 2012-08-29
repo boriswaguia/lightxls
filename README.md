@@ -23,17 +23,16 @@ public class TestEasyXlsLoader {
 }
 
 Is it not easy ?
-Change behaviour  by providing your own implementation.
+Customize by providing your own implementations.
 
-GREAT ! How will the tools know about my Implementation ?
-    Just use Getters and Setters function provided, to change default values !
+Use Getters and Setters functions provided, to set your own implementation.
 
-RESUME !
-
-1- Actually 
-	* We load xls column in POJO. Data are loaded As String. There is no type checking.
-	* Support for Native Java type checking.
+1- Actually
+===========
+* We load xls column in POJO. Data are loaded As String. There is no type checking.
+* Support for Native Java type checking.
 2- Comming soon
-    * Type Detecting on the fly,
-    * Support references (reference, collections and map)
-    * aso
+===============
+* Type Detecting on the fly,
+* Support references (reference, collections and map)
+* I should tie it spring dependecy Injection (just thinking...)
