@@ -31,6 +31,7 @@ Use Getters and Setters functions provided, to set your own implementation.
 ===========
 * We load xls column in POJO. Data are loaded As String. There is no type checking.
 * Support for Native Java type checking.
+
 2- Comming soon
 ===============
 * Type Detecting on the fly,
